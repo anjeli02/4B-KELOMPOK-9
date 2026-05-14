@@ -79,4 +79,8 @@ public class JtextfieldRounded extends JTextField {
         this.round = round;
         repaint();
     }
+
+    public void setEchoChar(char c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

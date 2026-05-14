@@ -4,13 +4,11 @@
  */
 package View;
 
-import java.awt.Dimension;
+import Dao.AdminDAO;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,39 +21,35 @@ public class LoginAdmin extends javax.swing.JFrame {
      */
     public LoginAdmin() {
         initComponents();
-        
-    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
-    // Paksa jPanel1 ngikut ukuran layar saat window resize
     this.addComponentListener(new java.awt.event.ComponentAdapter() {
         @Override
         public void componentResized(java.awt.event.ComponentEvent e) {
-            jPanel1.setSize(getContentPane().getWidth(), getContentPane().getHeight());
+            scaleGambar();
         }
     });
-        
-   SwingUtilities.invokeLater(() -> {
-        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/assets/download_edited.png"));
-        Image originalImage = originalIcon.getImage();
-        
-        int labelW = jLabel2.getWidth();
-        int labelH = jLabel2.getHeight();
-        
-        int imgW = originalIcon.getIconWidth();
-        int imgH = originalIcon.getIconHeight();
-        
-        double ratioW = (double) labelW / imgW;
-        double ratioH = (double) labelH / imgH;
-        double ratio = Math.min(ratioW, ratioH);
-        
-        int newW = (int) (imgW * ratio);
-        int newH = (int) (imgH * ratio);
-        
-        Image scaledImage = originalImage.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
-        jLabel2.setIcon(new ImageIcon(scaledImage));
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel2.setVerticalAlignment(SwingConstants.CENTER);
-    });
+}
+
+private void scaleGambar() {
+    if (jLabel2.getWidth() == 0 || jLabel2.getHeight() == 0) return;
+    
+    ImageIcon originalIcon = new ImageIcon(getClass().getResource("/assets/download_edited.png"));
+    Image originalImage = originalIcon.getImage();
+    
+    int imgW = originalIcon.getIconWidth();
+    int imgH = originalIcon.getIconHeight();
+    
+    double ratioW = (double) jLabel2.getWidth() / imgW;
+    double ratioH = (double) jLabel2.getHeight() / imgH;
+    double ratio = Math.min(ratioW, ratioH);
+    
+    int newW = (int) (imgW * ratio);
+    int newH = (int) (imgH * ratio);
+    
+    Image scaledImage = originalImage.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+    jLabel2.setIcon(new ImageIcon(scaledImage));
+    jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabel2.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     /**
@@ -67,62 +61,63 @@ public class LoginAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         panelRounded1 = new jtextfield.PanelRounded();
-        panelRounded2 = new jtextfield.PanelRounded();
-        jLabel1 = new javax.swing.JLabel();
         jtextfieldRounded1 = new jtextfield.JtextfieldRounded();
+        jLabel3 = new javax.swing.JLabel();
         jtextfieldRounded2 = new jtextfield.JtextfieldRounded();
         buttonRounded1 = new jtextfield.ButtonRounded();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
         panelRounded1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRounded1.setForeground(new java.awt.Color(204, 255, 255));
         panelRounded1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelRounded2.setBackground(new java.awt.Color(241, 241, 241));
-        panelRounded2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setText("LOGIN ADMIN");
-        panelRounded2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 340, 60));
-
+        jtextfieldRounded1.setForeground(new java.awt.Color(204, 204, 204));
+        jtextfieldRounded1.setCaretColor(new java.awt.Color(204, 204, 204));
         jtextfieldRounded1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtextfieldRounded1ActionPerformed(evt);
             }
         });
-        panelRounded2.add(jtextfieldRounded1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 260, 50));
+        panelRounded1.add(jtextfieldRounded1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/mataa.png"))); // NOI18N
+        panelRounded1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 20, 20));
 
         jtextfieldRounded2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtextfieldRounded2ActionPerformed(evt);
             }
         });
-        panelRounded2.add(jtextfieldRounded2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 260, 50));
+        panelRounded1.add(jtextfieldRounded2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 210, 40));
 
-        buttonRounded1.setBackground(new java.awt.Color(51, 204, 255));
+        buttonRounded1.setBackground(new java.awt.Color(102, 204, 255));
         buttonRounded1.setForeground(new java.awt.Color(255, 255, 255));
         buttonRounded1.setText("MASUK");
+        buttonRounded1.setToolTipText("");
         buttonRounded1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRounded1ActionPerformed(evt);
             }
         });
-        panelRounded2.add(buttonRounded1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 140, 40));
+        panelRounded1.add(buttonRounded1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 100, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/download_edited.png"))); // NOI18N
-        panelRounded2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, 450, 480));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("LOGIN ADMIN");
+        panelRounded1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
-        panelRounded1.add(panelRounded2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 650));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.add(panelRounded1, java.awt.BorderLayout.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/kantoran.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 410));
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        panelRounded1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 370, 410));
+
+        getContentPane().add(panelRounded1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,13 +126,37 @@ public class LoginAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtextfieldRounded1ActionPerformed
 
+    private void buttonRounded1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRounded1ActionPerformed
+    try {
+        String username = jtextfieldRounded1.getText();
+        String password = jtextfieldRounded2.getText();
+        
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username dan password tidak boleh kosong!", 
+                "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        AdminDAO adminDAO = new AdminDAO();
+        if (adminDAO.login(username, password)) {
+            JOptionPane.showMessageDialog(this, "Login berhasil!", 
+                "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            new DashboardAdmin().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Username atau password salah!", 
+                "Login Gagal", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_buttonRounded1ActionPerformed
+
     private void jtextfieldRounded2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextfieldRounded2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtextfieldRounded2ActionPerformed
-
-    private void buttonRounded1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRounded1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRounded1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,10 +198,10 @@ public class LoginAdmin extends javax.swing.JFrame {
     private jtextfield.ButtonRounded buttonRounded1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
     private jtextfield.JtextfieldRounded jtextfieldRounded1;
     private jtextfield.JtextfieldRounded jtextfieldRounded2;
     private jtextfield.PanelRounded panelRounded1;
-    private jtextfield.PanelRounded panelRounded2;
     // End of variables declaration//GEN-END:variables
 }
